@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --bg: oklch(0.985 0.006 130);
+  --surface: oklch(0.955 0.012 130);
+  --surface-deep: oklch(0.18 0.028 130);
+  --ink: oklch(0.16 0.018 130);
+  --muted: oklch(0.43 0.024 130);
+  --primary: oklch(0.39 0.118 130);
+  --primary-bright: oklch(0.55 0.142 130);
+  --accent: oklch(0.62 0.145 42);
+  --accent-dark: oklch(0.3 0.09 42);
+  --line: oklch(0.83 0.018 130);
+  --warn: oklch(0.58 0.115 64);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
+  --font-mono: var(--font-plex-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, color-mix(in oklch, var(--line) 38%, transparent) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in oklch, var(--line) 30%, transparent) 1px, transparent 1px),
+    var(--bg);
+  background-size: 72px 72px;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+.container {
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: 2rem;
+  }
+}
+
+.hero-image-mask {
+  mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 82%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
