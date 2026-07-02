@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/data/site";
+import { articles, siteUrl } from "@/data/site";
 
 const routes = [
   "",
@@ -9,6 +9,7 @@ const routes = [
   "/blog",
   "/search",
   "/ask",
+  ...articles.map((article) => `/blog/${article.slug}`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

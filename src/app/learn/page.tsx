@@ -3,6 +3,7 @@ import { EvidenceNote, SectionHeader } from "@/components/Section";
 import { PageShell } from "@/components/SiteShell";
 import { TopicGrid } from "@/components/TopicGrid";
 import { Timeline } from "@/components/Timeline";
+import { sourceLibrary } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Learning Center",
@@ -82,6 +83,47 @@ export default function LearnPage() {
           <SectionHeader eyebrow="Timeline" title="A first sequence map." />
           <div className="mt-10">
             <Timeline />
+          </div>
+        </div>
+      </section>
+      <section className="border-t border-[var(--line)] bg-[var(--bg)] py-16">
+        <div className="container">
+          <SectionHeader
+            eyebrow="Source library"
+            title="The pages behind the second iteration."
+            body="These source entries now power search, article sources, and the Ask section."
+          />
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {sourceLibrary.map((source) => (
+              <article
+                id={`source-${source.id}`}
+                key={source.id}
+                className="scroll-mt-28 border border-[var(--line)] bg-[var(--surface)] p-5"
+              >
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--primary)]">
+                  {source.type}
+                </p>
+                <h2 className="mt-3 font-serif text-3xl font-semibold text-[var(--ink)]">
+                  {source.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  {source.summary}
+                </p>
+                <ul className="mt-4 grid gap-2 text-sm leading-6 text-[var(--muted)]">
+                  {source.keyPoints.map((point) => (
+                    <li key={point}>- {point}</li>
+                  ))}
+                </ul>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-5 inline-flex text-sm font-semibold text-[var(--primary)]"
+                >
+                  Open source page
+                </a>
+              </article>
+            ))}
           </div>
         </div>
       </section>

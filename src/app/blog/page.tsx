@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PageShell } from "@/components/SiteShell";
 import { SectionHeader } from "@/components/Section";
-import { blogPosts } from "@/data/site";
+import { articles } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -23,7 +25,7 @@ export default function BlogPage() {
       </section>
       <section className="bg-[var(--bg)] py-16">
         <div className="container grid gap-4 md:grid-cols-2">
-          {blogPosts.map((post) => (
+          {articles.map((post) => (
             <article
               id={post.slug}
               key={post.slug}
@@ -41,8 +43,14 @@ export default function BlogPage() {
                 {post.title}
               </h2>
               <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                {post.excerpt}
+                {post.deck}
               </p>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)]"
+              >
+                Read article <ArrowRight className="size-4" />
+              </Link>
             </article>
           ))}
         </div>
